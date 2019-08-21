@@ -302,7 +302,7 @@ xxxx=>select re.name,m.title from movie m join rating r on m.mid=r.rid join revi
 +-------------------------+------------------+
 4 rows in set (0.00 sec)
 
-19. 
+19. Find the movie(s) with the highest average rating. Return the movie title(s) and average rating
 =>mysql> select title,avg(stars) as avg_star from movie join rating on movie.mid=rating.mid_fk group by mid order by avg_star desc limit 1;
 +------------+----------+
 | title      | avg_star |
@@ -310,3 +310,16 @@ xxxx=>select re.name,m.title from movie m join rating r on m.mid=r.rid join revi
 | Snow White |   4.5000 |
 +------------+----------+
 1 row in set (0.00 sec)
+
+21. For each director, return the director's name together with the title(s) of the movie(s) they directed that received the highest rating among all of their movies, and the value of that rating. Ignore movies whose director is NULL. 
+=>mysql> select director,title,max(stars) from movie join rating on movie.mid=rating.mid_fk where director is not null group by director;
++------------------+-------------------------+------------+
+| director         | title                   | max(stars) |
++------------------+-------------------------+------------+
+| James Cameron    | Avatar                  |          5 |
+| Robert Wise      | The Sound of Music      |          3 |
+| Steven Spielberg | Raiders of the Lost Ark |          4 |
+| Victor Fleming   | Gone with the Wind      |          4 |
++------------------+-------------------------+------------+
+4 rows in set (0.00 sec)
+
