@@ -248,3 +248,65 @@ xxxx=>select re.name,m.title from movie m join rating r on m.mid=r.rid join revi
 | Avatar             |
 +--------------------+
 5 rows in set (0.00 sec)
+
+14. For all pairs of reviewers such that both reviewers gave a rating to the same movie, return the names of both reviewers. Eliminate duplicates, don't pair reviewers with themselves, and include each pair only once. For each pair, return the names in the pair in alphabetical order.
+=>mysql> select distinct re1.name,re2.name from rating r1 join rating r2 on r1.mid_fk=r2.mid_fk join reviewer re1 on r1.rid_fk=re1.rid join reviewer re2 on r2.rid_fk=re2.rid where r1.rid_fk<r2.rid_fk;
++------------------+------------------+
+| name             | name             |
++------------------+------------------+
+| Sarah Martinez   | Mike Anderson    |
+| Brittany Harris  | Chris Jackson    |
+| Daniel Lewis     | Elizabeth Thomas |
+| Elizabeth Thomas | James Cameron    |
+| Chris Jackson    | Ashley White     |
++------------------+------------------+
+5 rows in set (0.00 sec)
+
+
+15. For each rating that is the lowest (fewest stars) currently in the database, return the reviewer name, movie title, and number of stars.
+=>mysql> select m.title,re.name,stars from movie m join rating r on m.mid=r.mid_fk join reviewer re on re.rid=r.rid_fk where stars=(select min(stars) from rating);
++-------------------------+-----------------+-------+
+| title                   | name            | stars |
++-------------------------+-----------------+-------+
+| Gone with the Wind      | Sarah Martinez  |     2 |
+| The Sound of Music      | Brittany Harris |     2 |
+| Raiders of the Lost Ark | Brittany Harris |     2 |
+| E.T.                    | Chris Jackson   |     2 |
++-------------------------+-----------------+-------+
+4 rows in set (0.00 sec)
+
+
+16.List movie titles and average ratings, from highest-rated to lowest-rated. If two or more movies have the same average rating, list them in alphabetical order.
+=>mysql> select m.title,avg(stars) as average from movie m join rating r on m.mid=r.rid_fk group by m.title;
+
+17. Find the names of all reviewers who have contributed three or more ratings.
+=>mysql> select re.name from reviewer re join rating r on re.rid=r.rid_fk group by r.rid_fk having count(r.mid_fk)>2 ;
++-----------------+
+| name            |
++-----------------+
+| Brittany Harris |
+| Chris Jackson   |
++-----------------+
+2 rows in set (0.02 sec)
+
+18. Some directors directed more than one movie. For all such directors, return the titles of all movies directed by them, along with the director name. Sort by director name, then movie title.
+=>mysql> select m1.title,m2.director from movie m1 join movie m2 on m1.director=m2
+    -> .director group by m1.mid having count(*)>1 order by director,title;
++-------------------------+------------------+
+| title                   | director         |
++-------------------------+------------------+
+| Avatar                  | James Cameron    |
+| Titanic                 | James Cameron    |
+| E.T.                    | Steven Spielberg |
+| Raiders of the Lost Ark | Steven Spielberg |
++-------------------------+------------------+
+4 rows in set (0.00 sec)
+
+19. 
+=>mysql> select title,avg(stars) as avg_star from movie join rating on movie.mid=rating.mid_fk group by mid order by avg_star desc limit 1;
++------------+----------+
+| title      | avg_star |
++------------+----------+
+| Snow White |   4.5000 |
++------------+----------+
+1 row in set (0.00 sec)
