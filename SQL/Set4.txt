@@ -194,3 +194,92 @@ mysql> select name,grade from highschooler left join (select distinct id1 from l
 +-----------+-------+-----------+-------+
 26 rows in set (0.00 sec)
 
+
+
+8. Find the difference between the number of students in the school and the number of different first names. 
+=>mysql> SELECT COUNT(*) - COUNT(DISTINCT name) as Difference from highschooler;
++------------+
+| Difference |
++------------+
+|          2 |
++------------+
+1 row in set (0.02 sec)
+
+
+9.Find the name and grade of all students who are liked by more than one other student. 
+=>mysql> select h.name,h.grade from Highschooler h join Likes l ON h.ID = l.ID2
+    -> group by l.id2 having count(*) > 1;
++-----------+-------+
+| name      | grade |
++-----------+-------+
+| Kris      |    10 |
+| Cassandra |     9 |
++-----------+-------+
+2 rows in set (0.13 sec)
+
+
+10. For every situation where student A likes student B, but student B likes a different student C, return the names and grades of A, B, and C
+=>mysql> SELECT H1.name, H1.grade, H2.name, H2.grade, H3.name, H3.grade
+    -> FROM Highschooler H1, Highschooler H2, Highschooler H3, Likes L1, Likes L2
+    -> WHERE H1.ID = L1.ID1 AND H2.ID = L1.ID2 AND (H2.ID = L2.ID1 AND H3.ID = L2.ID2 AND H3.ID != H1.ID)
+    -> ;
++---------+-------+-----------+-------+---------+-------+
+| name    | grade | name      | grade | name    | grade |
++---------+-------+-----------+-------+---------+-------+
+| Andrew  |    10 | Cassandra |     9 | Gabriel |     9 |
+| Gabriel |    11 | Alexis    |    11 | Kris    |    10 |
++---------+-------+-----------+-------+---------+-------+
+2 rows in set (0.00 sec)
+
+
+11. Find those students for whom all of their friends are in different grades from themselves. Return the students' names and grades.
+=>mysql> select h1.name,h1.grade,h2.name,h2.grade from highschooler h1 join friend f on f.id1=h1.id join highschooler h2 on f.id2=h2.id where h1.grade!=h2.grade;
++-----------+-------+-----------+-------+
+| name      | grade | name      | grade |
++-----------+-------+-----------+-------+
+| Tiffany   |     9 | Alexis    |    11 |
+| Cassandra |     9 | Alexis    |    11 |
+| Gabriel   |     9 | Andrew    |    10 |
+| Andrew    |    10 | Austin    |    11 |
+| Andrew    |    10 | Jordan    |    12 |
+| Jessica   |    11 | Kyle      |    12 |
+| Austin    |    11 | Kyle      |    12 |
+| Alexis    |    11 | Tiffany   |     9 |
+| Alexis    |    11 | Cassandra |     9 |
+| Andrew    |    10 | Gabriel   |     9 |
+| Austin    |    11 | Andrew    |    10 |
+| Jordan    |    12 | Andrew    |    10 |
+| Kyle      |    12 | Jessica   |    11 |
+| Kyle      |    12 | Austin    |    11 |
++-----------+-------+-----------+-------+
+14 rows in set (0.00 sec)
+
+12.  What is the average number of friends per student? (Your result should be just one number.)
+=>mysql> select avg(no) from (select count(distinct id2) as no from friend group by id2) as fri1;
++---------+
+| avg(no) |
++---------+
+|  1.0000 |
++---------+
+1 row in set (0.00 sec)
+
+
+13. Find the number of students who are either friends with Cassandra or are friends of friends of Cassandra. Do not count Cassandra, even though technically she is a friend of a friend.
+=>mysql> select count(distinct f2.id1)+count(distinct f2.id2) as fof from highschooler join friend f1  on id=f1.id1 join friend f2 on f1.id2=f2.id1 and id!=f2.id2 where name='Cassandra';
++-----+
+| fof |
++-----+
+|   7 |
++-----+
+1 row in set (0.00 sec)
+
+14. Find the name and grade of the student(s) with the greatest number of friends. 
+=>mysql> select name,grade,max(no) from (select name,grade,count(id1) as no from highschooler join friend on friend.id1=highschooler.id group by id1) as r;
++------+-------+---------+
+| name | grade | max(no) |
++------+-------+---------+
+| John |    12 |       4 |
++------+-------+---------+
+1 row in set (0.11 sec)
+
+
