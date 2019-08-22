@@ -111,3 +111,6 @@ mysql> select * from highschooler;
 | John |    12 | Haley |    10 |
 +------+-------+-------+-------+
 1 row in set (0.05 sec)
+
+
+3.
