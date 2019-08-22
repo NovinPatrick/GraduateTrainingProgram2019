@@ -113,4 +113,84 @@ mysql> select * from highschooler;
 1 row in set (0.05 sec)
 
 
-3.
+3. for every pair of students who both like each other, return the name and grade of both students. 
+Include each pair only once, with the two names in alphabetical order. 
+=>mysql> select h1.name,h1.grade,h2.name,h2.grade from highschooler h1,highschooler h2,likes l1,likes l2 where (h1.id=l1.id1 and h2.id=l1.id2) and (h1.id=l2.id2 and h2.id=l2.id1) and h1.name < h2.name order by h1.name,h2.name;
++-----------+-------+---------+-------+
+| name      | grade | name    | grade |
++-----------+-------+---------+-------+
+| Cassandra |     9 | Gabriel |     9 |
+| Jessica   |    11 | Kyle    |    12 |
++-----------+-------+---------+-------+
+2 rows in set (0.02 sec)
+
+
+4. Find all students who do not appear in the Likes table (as a student who likes or is liked) and return their names and grades. Sort by grade, then by name within each grade.
+=>mysql> select name,grade from highschooler where id not in (select distinct id1 from likes union select distinct id2 from likes) order by grade,name;
++---------+-------+
+| name    | grade |
++---------+-------+
+| Jordan  |     9 |
+| Tiffany |     9 |
+| Logan   |    12 |
++---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select name,grade from highschooler left join (select distinct id1 from likes union select distinct id2 from likes) high on high.id1=highschooler.id where high.id1 is null  order by grade,name;
++---------+-------+
+| name    | grade |
++---------+-------+
+| Jordan  |     9 |
+| Tiffany |     9 |
+| Logan   |    12 |
++---------+-------+
+3 rows in set (0.02 sec)
+
+
+5. For every situation where student A likes student B, but we have no information about whom B likes (that is, B does not appear as an ID1 in the Likes table), return A and B's names and grades.
+=>mysql> select h.name,h.grade from likes l1 right join likes l2 on l1.id1=l2.id2 join highschooler h on h.id=l2.id2 where l1.id1 is null and l1.id2 is null;
++--------+-------+
+| name   | grade |
++--------+-------+
+| Haley  |    10 |
+| Kris   |    10 |
+| Kris   |    10 |
+| Jordan |    12 |
++--------+-------+
+4 rows in set (0.00 sec)
+
+
+6. Find names and grades of students who only have friends in the same grade. Return the result sorted by grade, then by name within each grade.
+=>mysql> select h1.name,h1.grade,h2.name,h2.grade from friend f1 join highschooler h1 on f1.id1=h1.id join highschooler h2 on f1.id2=h2.id where h1.grade=h2.grade order by h1.grade,h1.name;
++-----------+-------+-----------+-------+
+| name      | grade | name      | grade |
++-----------+-------+-----------+-------+
+| Cassandra |     9 | Gabriel   |     9 |
+| Gabriel   |     9 | Cassandra |     9 |
+| Gabriel   |     9 | Jordan    |     9 |
+| Jordan    |     9 | Tiffany   |     9 |
+| Jordan    |     9 | Gabriel   |     9 |
+| Tiffany   |     9 | Jordan    |     9 |
+| Andrew    |    10 | Kris      |    10 |
+| Brittany  |    10 | Kris      |    10 |
+| Brittany  |    10 | Haley     |    10 |
+| Haley     |    10 | Brittany  |    10 |
+| Haley     |    10 | Kris      |    10 |
+| Kris      |    10 | Haley     |    10 |
+| Kris      |    10 | Brittany  |    10 |
+| Kris      |    10 | Andrew    |    10 |
+| Alexis    |    11 | Gabriel   |    11 |
+| Alexis    |    11 | Jessica   |    11 |
+| Gabriel   |    11 | Jessica   |    11 |
+| Gabriel   |    11 | Alexis    |    11 |
+| Jessica   |    11 | Alexis    |    11 |
+| Jessica   |    11 | Gabriel   |    11 |
+| John      |    12 | Logan     |    12 |
+| Jordan    |    12 | Logan     |    12 |
+| Jordan    |    12 | Kyle      |    12 |
+| Kyle      |    12 | Jordan    |    12 |
+| Logan     |    12 | John      |    12 |
+| Logan     |    12 | Jordan    |    12 |
++-----------+-------+-----------+-------+
+26 rows in set (0.00 sec)
+
