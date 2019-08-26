@@ -194,7 +194,25 @@ mysql> select name,grade from highschooler left join (select distinct id1 from l
 +-----------+-------+-----------+-------+
 26 rows in set (0.00 sec)
 
-
+7.
+select h1.name,h1.grade,h3.name,h3.grade,h2.name,h2.grade from likes l left join friend f
+     on l.id1=f.id1 and l.id2=f.id2
+     join friend f1 on l.id1=f1.id1
+     join friend f2 on l.id2=f2.id1
+     join highschooler h1 on l.id1=h1.id
+     join highschooler h2 on f1.id2=h2.id
+     join highschooler h3 on l.id2=h3.id
+     where f.id1 is null and f.id2 is null
+     and f1.id2=f2.id2;
+	 
++--------+-------+-----------+-------+---------+-------+
+| name   | grade | name      | grade | name    | grade |
++--------+-------+-----------+-------+---------+-------+
+| Andrew |    10 | Cassandra |     9 | Gabriel |     9 |
+| Austin |    11 | Jordan    |    12 | Andrew  |    10 |
+| Austin |    11 | Jordan    |    12 | Kyle    |    12 |
++--------+-------+-----------+-------+---------+-------+
+3 rows in set (0.00 sec)
 
 8. Find the difference between the number of students in the school and the number of different first names. 
 =>mysql> SELECT COUNT(*) - COUNT(DISTINCT name) as Difference from highschooler;
