@@ -297,6 +297,13 @@ mysql> select * from plays_in;
 1 row in set (0.00 sec)
 
 4. How many concerts have featured at least one composition by Andy Jones? List concert date, venue and the composition's title.
+=> mysql>select con_date,concert_venue,c_title from musician join composer
+     on m_no=comp_is
+     join has_composed on comp_no=cmpr_no
+     join composition on cmpn_no=c_no
+     join performance on c_no=performed
+     join concert on performed_in=concert_no
+     where m_name='Andy Jones';
 
 5. List the different instruments played by the musicians and avg number of musicians who play the instrument. 
 =>mysql> select instrument,avg(no) from (select count(perf_is) as no,instrument from performer group by instrument) as inst group by instrument;
