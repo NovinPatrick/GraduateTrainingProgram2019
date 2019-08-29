@@ -453,49 +453,7 @@ mysql> select A.m_name,inscnt,compcnt from ((select m_name,count(instrument)as i
 +------------------+--------+---------+
 9 rows in set (0.00 sec)
 		  
- mysql> (select A.m_name,ifnull(inscnt,0),ifnull(compcnt,0)
-       from (select m_name,count(*)as inscnt from musician join performer
-       on m_no=perf_is
-       join place on born_in=place_no
-       where place_country='England'
-       group by m_name) A left join
-       (select m_name,count(*) as compcnt from
-       musician m join place p1 on born_in=place_no
-       join composer c on m_no=comp_is
-       join has_composed on comp_no=cmpr_no
-       join composition c2 on c_no=cmpn_no
-       where place_country='England'
-       group by m_name) B on A.m_name=B.m_name)
-       union
-      (select B.m_name,inscnt,compcnt from (select m_name,count(*)as inscnt 
-       from musician join performer
-      on m_no=perf_is
-      join place on born_in=place_no
-      where place_country='England'
-      group by m_name) A right join
-      (select m_name,count(*) as compcnt from
-      musician m join place p1 on born_in=place_no
-      join composer c on m_no=comp_is
-      join has_composed on comp_no=cmpr_no
-      join composition c2 on c_no=cmpn_no
-      where place_country='England'
-      group by m_name) B on A.m_name=B.m_name);
-	  
-+------------------+------------------+-------------------+
-| m_name           | ifnull(inscnt,0) | ifnull(compcnt,0) |
-+------------------+------------------+-------------------+
-| James First      |                1 |                 4 |
-| Harry Forte      |                3 |                 2 |
-| Harriet Smithson |                2 |                 0 |
-| Theo Mengel      |                3 |                 0 |
-| Davis Heavan     |                3 |                 0 |
-| Alan Fluff       |                2 |                 0 |
-| Fred Bloggs      |             NULL |                 2 |
-| Andy Jones       |             NULL |                 1 |
-+------------------+------------------+-------------------+
-8 rows in set (0.00 sec)
-
- 
+  
 13. Give the band name, conductor and contact of the bands performing at the most recent concert in the Royal Albert Hall. (1 point possible)
 
  mysql> select band_name,m.m_name contact,m1.m_name conductor from band b
