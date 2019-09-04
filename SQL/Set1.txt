@@ -290,6 +290,8 @@ mysql> select h.Name,b.Date_From,b.Date_To,b.Room_No from Hotel h join Booking b
 10.What is the number of bookings that started in the month of September?
 
 11. List the names and cities of guests who began a stay in New York in August.
+
+select g.name,g.city from guest g join booking b on g.=b. join hotel h on b.hotel_no=h.hotel_no where lower(h.city)='newyork' and b.date_from like '%08';
 12. List the hotel names and room numbers of any hotel rooms that have not been booked.
  mysql> select name from hotel where hotel_no not in (select hotel_no from booking);
 +------------------+
