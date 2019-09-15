@@ -1,0 +1,13 @@
+4a)
+import math
+r = int(input("Enter required radius:"))
+
+vol= (4/3) * math.pi * (r * r * r)
+
+print("The volume is: ",vol)
+
+=> Enter required radius:>? 5
+The volume is:  523.5987755982989
+
+
+b) 
