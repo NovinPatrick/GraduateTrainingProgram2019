@@ -1,0 +1,175 @@
+1.
+#Write a program that examines three variables—x, y, and z—
+# and prints the largest odd number among them.
+# If none of them are odd, it should print a message to that effect.
+x=int(input())
+y=int(input())
+z=int(input())
+if x%2==0 and y%2==0 and z%2==0:
+    print("No odd numbers!")
+else:
+    if x>y and x>z:
+        print("Largest is: "+str(x))
+    elif y>x and y>z:
+        print("Largest is: " + str(y))
+    else:
+        print("Largest is: " + str(z))
+        
+        
+2)
+def right_justify(string_sam):
+    s = len(string_sam)
+    i = 70 - s
+    j = s + i
+    res_string = string_sam.rjust(j)
+    print(res_string)
+string1 = str(input())
+right_justify(string1)
+
+
+3)
+
+
+4a)
+import math
+r = int(input("Enter required radius:"))
+
+vol= (4/3) * math.pi * (r * r * r)
+
+print("The volume is: ",vol)
+
+=> Enter required radius:>? 5
+The volume is:  523.5987755982989
+
+
+4b)
+book_cost=24.95
+dis_amt= book_cost - 0.4
+fir_ship_cost = dis_amt + 3.0
+add_copy_amt = dis_amt + 0.0075
+
+no_books=int(input("Enter desired number of copies required:"))
+
+tot_cost = 0
+
+for i in range(0,no_books):
+    if tot_cost == 0:
+        tot_cost = tot_cost + fir_ship_cost
+    else:
+        tot_cost = tot_cost + add_copy_amt
+
+print("Total cost: ",tot_cost)
+
+==>
+Enter desired number of copies required:60
+Total cost:  1476.442499999998
+
+Process finished with exit code 0
+--------------------------------------------------------------------
+
+4c)
+start_time_hr = 6 + 52 / 60.0
+easy_pace_hr = (8 + 15 / 60.0 ) / 60.0
+tempo_pace_hr = (7 + 12 / 60.0) / 60.0
+running_time_hr = 2 * easy_pace_hr + 3 * tempo_pace_hr
+breakfast_hr = start_time_hr + running_time_hr
+breakfast_min = (breakfast_hr-int(breakfast_hr))*60
+#breakfast_sec= (breakfast_min-int(breakfast_min))*60
+
+print ('breakfast_at:', int(breakfast_hr),':', int(breakfast_min))
+
+==>
+breakfast_at: 7 : 30
+
+Process finished with exit code 0
+-----------------------------------------------------------------------
+5)
+
+a = int(input("Enter any desired integer: "))
+
+for i in range(1, 6):
+    for j in range(1,10):
+        n = j ** i
+        if n == a:
+            print("root: ", j, "power: ", i)
+        else:
+            print("No such values found")
+==>
+Enter any desired integer: 4
+root:  4 power:  1
+root:  2 power:  2
+
+Process finished with exit code 0
+----------------------------------------------------------------------
+
+6)
+#s = '1.23,2.4,3.123'
+
+s = '1.23,2.4,3.123'
+li=[]
+li1=s.split(',')
+v=0.0
+for i in li1:
+    v=v+float(i)
+print(v)
+
+==>
+6.753
+
+Process finished with exit code 0
+--------------------------------------------------------------------------
+7)
+def IsIn(str1,str2):
+    if sorted(str1)==sorted(str2):
+        print("true")
+    else:
+        print("false")
+
+
+s1=str(input("Enter the first string: "))
+s2=str(input("Enter the second string: "))
+
+IsIn(s1,s2)
+
+==>
+Enter the first string: accenture
+Enter the second string: reutnecca
+true
+
+Process finished with exit code 0
+
+Enter the first string: from
+Enter the second string: to
+false
+
+Process finished with exit code 0
+
+---------------------------------------------------------------------------
+
+9)
+'''>>> width/2
+width/2.0
+ height/3
+  1 + 2 * 5
+ delimiter * 5'''
+
+width 	 =int(input("Enter desired width: "))
+height	 =float(input("Enter desired height: "))
+delimiter=str(input("Enter desired delimiter: "))
+
+print('width(width/2):   ',(width/2),' type:   ',type(width/2))
+print('width(width/2.0): ',(width/2.0),' type: ',type(width/2.0))
+print('height(height/3): ',(height/3),' type:  ',type(height/3))
+print('(1+2*5):          ',(1+2*5),' type:     ',type(1+2*5))
+print('(delimiter*5):    ',(delimiter*5),type: ',type(delimiter*5))
+
+==>
+Enter desired width: 17
+Enter desired height: 12.0
+Enter desired delimiter: $
+width(width/2):    8.5  type:    <class 'float'>
+width(width/2.0):  8.5  type:  <class 'float'>
+height(height/3):  4.0  type:   <class 'float'>
+(1+2*5):           11  type:      <class 'int'>
+(delimiter*5):     $$$$$ type:  <class 'str'>
+------------------------------------------------------------------------------
