@@ -1,0 +1,113 @@
+1.
+def GCD(x, y):
+    if x > y:
+        smaller = y
+    else:
+        smaller = x
+    gcd=[]
+    for i in range(1, smaller + 1):
+        if ((x % i == 0) and (y % i == 0)):
+            gcd.append(i)
+    return max(gcd)
+
+
+num1 = int(input("Enter number1: "))
+num2 = int(input("Enter number2: "))
+
+res_gcd = GCD(num1, num2)
+
+print("The H.C.F. of", num1, "and", num2, "is", res_gcd)
+
+==>
+Enter number1: 54
+Enter number2: 24
+The H.C.F. of 54 and 24 is 6
+
+Process finished with exit code 0
+--------------------------------------------------------------------------
+2.
+def is_power(x,y):
+    while x % y == 0:
+        x = x / y
+    return x == 1
+
+
+a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
+
+po=is_power(a,b)
+if is_power(a,b) is True:
+    print(a,' is a power of ',b)
+else:
+    print("Both are not powers of each other..!")
+
+==>
+Enter first number: 16
+Enter second number: 2
+16  is a power of  2
+
+Process finished with exit code 0
+=========
+Enter first number: 12
+Enter second number: 2
+Both are not powers of each other..!
+
+Process finished with exit code 0
+
+--------------------------------------------------------------------
+
+3.
+def factI(num):
+    temp = 1
+    for i in range(1,num+1):
+        temp = temp * i
+    return temp
+
+
+def factR(num):
+    if num == 1 or num == 0:
+        return 1
+    else:
+        return num * factR(num - 1)
+
+
+numb = int(input("Enter any number: "))
+
+iterative = factI(numb)
+recursive = factR(numb)
+
+print("Iterative : ",iterative)
+print("Recursive : ",recursive)
+
+==>
+Enter any number: 5
+Iterative :  120
+Recursive :  120
+
+Process finished with exit code 0
+ 
+------------------------------------------------------------------
+
+4. 
+import math
+n = int(input("Enter any binary number: "))
+num = 0
+i = 0
+bi_num = n
+while n > 0:
+    s = n % 10
+    n = int(n / 10)
+    num = num + (s * math.pow(2,i))
+    i = i + 1
+
+print("Decimal form of ",bi_num, ' is ',int(num))
+
+==>
+ Enter any binary number: 10011
+Decimal form of  10011  is  19
+
+Process finished with exit code 0
+
+--------------------------------------------------------------------
+
+5.
