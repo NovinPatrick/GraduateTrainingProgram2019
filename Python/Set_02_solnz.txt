@@ -111,7 +111,16 @@ Process finished with exit code 0
 --------------------------------------------------------------------
 
 5.
+str1='a23g3kd'
+sum = 0
+for i in str1:
+    if str.isdigit(i) is True:
+        sum = (sum + int(i))
 
+print(sum)
+
+==>
+8
 
 
 ---------------------------------------------------------------------
@@ -195,3 +204,7 @@ String is NOT a palindrome
 
 Process finished with exit code 0
 --------------------------------------------------------------------
+
+8.
+
+
