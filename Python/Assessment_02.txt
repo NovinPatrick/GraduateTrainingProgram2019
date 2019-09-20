@@ -1,0 +1,109 @@
+1. 
+Write a Python program to combine each line from first file 
+with the corresponding line in second file
+
+f1 = open(file1.txt,r)
+f2 = open(file2.txt,r)
+
+f3 = open(res_file.txt,w)
+
+3.
+Write a Python function that accepts a string and 
+calculate the number of upper case letters and lower case letters.
+
+def letter_cnt(samp_str):
+	lower_cnt = 0
+	upper_cnt = 0
+	for i in samp_str:
+		if ord(i)>=65 and ord(i)<=90:
+			upper_cnt = upper_cnt + 1
+		else:
+			lower_cnt = lower_cnt + 1
+	print("Number of uppercase letters: ",upper_cnt)
+	print("NUmber of lowercase letters: ",lower_cnt)
+
+given_string = str(input("Enter a string to be processed: "))
+
+letter_cnt = (given_string)
+
+
+
+4. 
+Write a Python function that takes a list and returns a new list 
+with unique elements of the first list. Without using set
+
+def uniq_list(sampl_li):
+	li = []
+	for i in sampl_li:
+		if i not in li:
+			li.append(i)
+	return li
+
+samp_l=[]
+
+print("Input the sample list: ")
+for i in range(0,11):
+	a = int(input())
+	samp_l.append(a)
+
+res_lis = uniq_list(samp_l)
+	
+
+5.
+Write a Python function to check whether a string is a pangram or not.
+
+import re
+
+def pan_gram(input_string):
+	str1 = re.match("[A-Za-z]{1}",input_string)
+	
+	
+6.
+Write a Python program that accepts a hyphen-separated 
+sequence of words as input and prints the words in a hyphen-separated 
+sequence after sorting them alphabetically. 
+	
+
+inp_str = str(input())
+
+dup_str = inp_str
+
+dup_str.split('-')
+
+li=[]
+
+for i in dup_str:
+	li.append(i[0])
+
+li.sort()
+
+
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
