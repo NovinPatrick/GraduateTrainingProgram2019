@@ -1,0 +1,76 @@
+1.
+def is_Palindrome(strn):
+    print(strn[::-1])
+
+
+str1 = str(input("Enter any desired string: "))
+
+is_Palindrome(str1)
+
+==>
+Enter any desired string: accenture
+erutnecca
+
+Process finished with exit code 0
+--------------------------------------------------
+2.
+def rotate_word(in_str,r_cnt):
+    res_str = ""
+    res = 0
+    for i in in_str:
+        res = ord(i) + r_cnt
+        res_str = res_str + chr(res)
+
+    print(res_str)
+
+
+str_input = str(input("Enter any desired string: "))
+rot_cnt = int(input("Enter the rotate count: "))
+
+
+rotate_word(str_input,rot_cnt)
+
+==>
+Enter the rotate count: 3
+dffhqwxuh
+
+Process finished with exit code 0
+----------------------------------------------------
+3.
+def has_no_e(inp_str):
+    li=[]
+    for i in inp_str:
+        li.append(i)
+    for i in li:
+       if i == 'e':
+           return True
+           break
+       else:
+           return False
+
+
+str1=str(input("Enter the string: "))
+has_no_e(str1)
+a= has_no_e(str1)
+#print(a)
+if a is True:
+    print("True: the word contains \'e'")
+else:
+    print("False: the word does not contain \'e'")
+
+
+==>
+Enter the string: accenture
+True: the word contains 'e'
+
+Process finished with exit code 0
+
+
+Enter the string: gadsby
+False: the word does not contain 'e'
+
+Process finished with exit code 0
+
+----------------------------------------------------
+
+
