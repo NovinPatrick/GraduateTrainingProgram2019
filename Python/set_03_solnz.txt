@@ -73,4 +73,77 @@ Process finished with exit code 0
 
 ----------------------------------------------------
 
+4.
+def has_no_e_perc(str1):
+    e_count = 0
+    for i in str1:
+        if i == 'e':
+            e_count = e_count + 1
+    print(e_count)
+    s_len = len(str1)
+    print(s_len)
+    perc = ((e_count / s_len) * 100)
+    print("Percentage ")
+    print("{0:.5f}".format(perc))
+
+
+check_str=str(input("Enter any desired string"))
+
+has_no_e_perc(check_str)
+
+==>
+Enter any desired stringaccenture
+2
+9
+Percentage 
+22.22222
+
+Process finished with exit code 0
+
+--------------------------------------------------------------
+5.
+def avoids(in_str,fr_lett):
+    flag=0
+    for i in fr_lett:
+        if i in in_str:
+            flag = flag + 1
+    if flag == 0:
+        print("The word does not contain any forbidden letters :)")
+    else:
+        print("The word contains frobidden letters :(")
+
+
+
+forbidden_lett=[]
+print("Input the any 5 forbidden letters ")
+for i in range(0,5):
+    n = str(input())
+    forbidden_lett.append(n)
+chck_str = str(input("Enter the word: "))
+
+avoids(chck_str,fo
+==>
+Input the any 5 forbidden letters 
+s
+g
+h
+i
+j
+Enter the word: accenture
+The word does not contain any forbidden letters :)
+
+Process finished with exit code 0
+
+Input the any 5 forbidden letters 
+a
+e
+i
+o
+u
+Enter the word: accenture
+The word contains frobidden letters :(
+
+Process finished with exit code 0
+--------------------------------------------
+
 
