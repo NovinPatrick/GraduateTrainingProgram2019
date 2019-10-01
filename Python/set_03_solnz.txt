@@ -145,5 +145,90 @@ The word contains frobidden letters :(
 
 Process finished with exit code 0
 --------------------------------------------
+8.
+def is_abecdarian(s):
+    index = 0
+    while index < len(s)-1:
+        if s[index + 1] < s[index]:
+            return False
+        index += 1
+    return True
+
+print(is_abecdarian('babcd'))
+print(is_abecdarian('abcz'))
+==>
+False
+True
+---------------------------------------------
+9.
+def is_sorted(samp_li):
+  if sorted(samp_li)==samp_li:
+    return True
+  else:
+    return False
 
 
+print("Input a list of 10 inputs: ")
+li=[]
+for i in range(0,10):
+  j = input()
+  li.append(j)
+
+
+print(is_sorted(li))
+
+==>
+
+Input a list of 10 inputs:
+a
+b
+c
+d
+e
+f
+g
+h
+i
+j
+True
+--------
+Input a list of 10 inputs:
+s
+d
+a
+f
+g
+b
+v
+c
+m
+j
+False
+---------------------------------------------------
+10.
+def is_anagram(str1,str2):
+    if sorted(str1)==sorted(str2):
+        print("Strings are anagrams")
+    else:
+        print("Strings are not anagrams")
+
+
+st1 = str(input("Enter the first string: "))
+st2 = str(input("Enter the second string: "))
+
+is_anagram(st1,st2)
+
+==>
+
+Enter the first string: dad
+Enter the second string: add
+Strings are anagrams
+
+----
+
+Enter the first string: accenture
+Enter the second string: solutions
+Strings are not anagrams
+
+
+========================================================================================================================================
