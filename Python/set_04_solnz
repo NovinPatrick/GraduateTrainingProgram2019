@@ -1,0 +1,56 @@
+1.
+class Shape(object):
+    def __init__(self):
+        pass
+
+    def area(self):
+        return 0
+
+class Square(Shape):
+    def __init__(self, l):
+        self.length = l
+
+    def area(self):
+        return self.length*self.length
+
+sq= Square(25)
+print(sq.area())
+
+==>
+625
+
+------------------------------------------------------
+2.
+class Person:
+    def __init__(self):
+        pass
+
+
+class Male(Person):
+    def __init__(self):
+        pass
+            
+    def getGender(self):
+        return 'Male'
+
+class Female(Person):
+    def __init__(self):
+        pass
+           
+    def getGender(self):
+        return 'Female'
+
+
+m = Male()
+print(m.getGender())
+
+f = Female()
+print(f.getGender())
+
+==>
+Male
+Female
+-------------------------------------------------------
+3.
+
+
