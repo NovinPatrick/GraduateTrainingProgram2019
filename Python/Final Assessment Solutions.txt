@@ -1,0 +1,176 @@
+FINAL ASSESSMENT
+-----------------
+
+1.
+import re
+class FileError(in_str):
+    def __init__(self, value): 
+        self.value = in_str
+    def check(value):
+	ch = re.search(r'.png | .jpeg | .jpg | .gif',value)	
+    return ch
+
+inp_str = str(input("Please enter file name: ")) 
+try: 
+	raise(FileError(inp_str)) 
+
+
+except FileError as e: 
+	print('An exception occured: ',e.value) 
+
+
+-------------------------------------------------------------
+2.
+class ABCBank:
+    def __init__(self,c_name):
+	self.name = c_name
+	self.acc_num = 1000
+	self.balance = 100
+    
+    def new_user(self):
+	self.name = name
+	acc_no += 1
+
+    def deposit(self): 
+	amount = float(input("Enter amount to be deposited: ")) 
+	self.balance += amount 
+	print("Amount Deposited:", amount) 
+		
+   
+    def withdraw(self): 
+	amount = float(input("Enter amount to be Withdrawn: ")) 
+	if self.balance>=amount: 
+		self.balance-=amount 
+		print("You withdrew:", amount) 
+	else: 
+		print("Insufficient balance ") 
+
+    def display(self): 
+	print("Custmoer name: ",self.c_name)
+	print("Account number: ",self.acc_no
+	print("Net available balance: ",self.balance) 
+
+
+
+b = ABCBank() 
+
+b.deposit() 
+b.withdraw() 
+b.display() 
+
+----------------------------------------------------------------
+4.
+import re
+
+with open('assessment.txt',r) as f:
+    check = " " 
+    for i in f:
+	check += re.findall(r'[0-255]{1}[.][0-255]{1}[.][0-255]{1}[.][0-255]{1}',i)
+    print(check)
+	
+
+------------------------------------------------------------------------------------
+
+5.
+ones = {1:'one',2:'two',3:'three',4:'four',5:'five',6:'six',7:'seven',8:'eight',9:'nine',0:'zero'}
+elevens = {10:'ten',11:'eleven',12:'twelve',13:'thirteen',14:'forteen',15:'fifteen',16:'sixteen',17:'seventeen',18:'eighteen',19:'nineteen'}
+tens = {20:'twenty',30:'thirty',40:'forty',50:'fifty',60:'sixty',70:'seventy',80:'eighty',90:'ninety'}
+hundreds = {100:'one hundred',200:'two hundred',300:'three hundred',400:'four hundred',500:'five hundred',600:'six hundred',700:'seven hundred',800:'eight hundred',900:'nine hundred'}
+thousands ={1000:'one thousand',2000:'two thousand',3000:'three thousand',4000:'four thousand',5000:'five thousand',6000:'six thousand',7000:'seven thousand',8000:'eight thousand',9000:'nine thousand'}
+
+
+final_wrd = ""
+
+numb = int(input("Enter your desired number: "))
+
+    if len(numb)==1:
+	final_wrd += ones.get(numb[0])
+	print(final_wrd)
+    elif len(numb)==2:
+	if numb in elevens:
+	    final_wrd += elevens.get(numb)
+	    print(final_wrd)
+	else:
+	    final_wrd += tens.get(numb[0]) + ones.get(numb[1])
+	    print(final_wrd)
+    elif len(numb)==3:
+	el_num = eval(str(numb[1]) + str(numb[2]))
+        if el_num in elevens:
+             final_wrd += hundreds.get(numb[0]) + elevens.get(el_num)
+	     print(final_wrd)
+	else:
+	     final_wrd += hundreds.get(numb[0]) + tens.get(numb[1]) + ones.get(numb[2])
+	     print(final_wrd)
+    elif len(numb)==4:
+	el_num = eval(str(numb[1]) + str(numb[2]))
+        if el_num in elevens:
+             final_wrd += thousands.get(numb[0]) + hundreds.get(numb[1]) + elevens.get(el_num)
+	     print(final_wrd)
+	else:
+	     final_wrd += thousands.get(numb[0]) + hundreds.get(numb[1]) + tens.get(numb[2]) + ones.get(numb[3])
+	     print(final_wrd)
+    else:
+	print("Sorry! Number not fopund in the range!")
+
+
+-------------------------------------------------------------------------------------------------------------------
+7.
+exprsn = str(input())   #{(([8+3)])*(1+2)])}
+flw_flag = 0
+sq_flag = 0
+flag = 0
+
+for i in exprsn:
+    if i=='{':
+	flw_flag += 1
+    elif i == '}':
+	flw_flag -= 1
+    elif i == '(':
+	flag += 1
+    elif i ==')':
+	flag -=1
+    elif i =='[':
+	sq_flag +=1
+    elif i ==']':
+	sq_flag -= 1
+
+if flw_flag == 0 and flag == 0 and sq_flag==0:
+	print("It is a valid experssion!")
+else:
+	print("InVaLiD!!!!!!!")
+
+=====================================================================================================================
+
+	 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+	
+
