@@ -1,0 +1,341 @@
+
+1:For the below binary number , count the Occurrence of sequence '101'
+
+10101010100111101
+
+==>
+import re
+patt = str(input("Enter any binary number: "))
+count = 0
+for i in range(0,len(patt)):
+    res_patt = re.findall('101',patt)
+print(len(res_patt))
+
+
+------------------------------------------
+Enter any binary number: 10101010100111101
+3
+
+Process finished with exit code 0
+-------------------------------------------
+
+
+-----------------------------------------xxxxxxxxxx
+for i in range(0,len(patt)):
+    #res_patt = re.findall('101',patt)
+#print(len(res_patt))
+    if (patt.find(patt[i]) + 3) >= len(patt):
+        k = patt[i]
+        res_patt = k + patt[i+1] + patt[i+2]
+        if res_patt == '101':
+            count = count + 1
+print(count)
+xxxxxxxxxxxxx---------------------------------------
+ 
+
+
+
+str1="10101010100111101"
+cnt=0
+for i in range(len(str1)-1):
+    if str1[i]=='1' and str1[i+1]=='0' and str1[i+2]=='1':
+        cnt+=1
+print(cnt)
+
+str1="10101010100111101"
+for i in range(len(str1)-1):
+
+----------------------------------
+5
+
+----------------------------------
+
+2: For the below matrix , calculate both the diagonal and print the value.(Hint: consider each row as a list object)
+
+ 
+
+3 8 7     
+
+8 7 9     
+
+1 6 0     
+
+==========================================================
+
+==>
+lis1 = [3,8,7]
+lis2 = [8,7,9]
+lis3 = [1,6,0]
+dig1 = 0
+dig2 = 0
+if len(lis1) == len(lis2) & len(lis2) == len(lis3) & len(lis3) == len(lis1):
+    i = 0
+    dig1 = int(lis1[i]) + int(lis2[i+1]) + int(lis3[i+2])
+    dig2 = int(lis3[i]) + int(lis2[i+1]) + int(lis1[i+2])
+
+print("Diagonal 1: ",dig1)
+print("Diagonal 2: ",dig2)
+
+----------------------------
+Diagonal 1:  10
+Diagonal 2:  15
+----------------------------
+==========================================================
+==>
+lis_len = int(input("Enter the length of the list: "))
+no_lis = int(input("Enter the number of lists: "))
+
+if lis_len == no_lis:
+    headers = [[] for i in range(1, no_lis+1)]
+    for i in range(0,no_lis):
+        for j in range(0,lis_len):
+            k = int(input())
+            headers[i].append(k)
+        print headers[i]
+    dig1 = 0
+    for i in range(0,lis_len):
+        dig1 += int(headers[i][i])
+    print dig1
+    dig2 = 0
+    k = lis_len - 1
+    for j in range(0,lis_len):
+        dig2 += int(headers[k][j])
+        k-=1
+    print dig2
+else:
+    print "ValueError: Run again and enter same values for both the inputs :("
+
+-----------------------------------------------------
+
+Enter the length of the list: 3
+Enter the number of lists: 3
+3
+8
+7
+[3, 8, 7]
+8
+7
+9
+[8, 7, 9]
+1
+6
+0
+[1, 6, 0]
+10
+15
+
+Process finished with exit code 0
+--------------------------------------------------------
+
+Enter the length of the list: 3
+Enter the number of lists: 4
+ValueError: Run again and enter same values for both the inputs :(
+
+Process finished with exit code 0
+---------------------------------------------------------
+
+3 :Rotate the above matrix by 90 degree anticlockwise
+
+hint :convert row to column and column to row
+
+ 
+
+4: The string abcabcabc........ goes till 1111 . print the number of Occurrence of 'ca'
+
+==>
+import re
+str1=""
+str2='abc'
+cnt=0
+for i in range(0,1112//3):
+    str1+=str2
+print(str1)
+print(len(str1))
+for i in range(len(str1)-1):
+    if str1[i]=='c' and  str1[i+1]=='a':
+        cnt+=1
+print(cnt)
+
+---------------------------------------------------
+1110
+369
+
+Process finished with exit code 0
+---------------------------------------------------
+
+5: Convert the string as below.
+
+input : abcDEwQ
+output: ABCdeWq
+
+==>
+in_str = input()
+res_str = ""
+for i in in_str:
+    if i.islower():
+        res_str += i.upper()
+    else:
+        res_str += i.lower()
+print(res_str)
+
+-------------------------------------
+abcDEwQ
+ABCdeWq
+
+Process finished with exit code 0
+--------------------------------------
+ 
+
+6: Find the ordered longest alphabetical sequence.
+
+abccdef abcdef ae
+
+ 
+
+7:Find the sum of multiples of 3 and 5 between 1 to 1000
+
+==>
+lis = []
+
+for i in range(1,101):
+    if (i % 3 == 0) and (i % 5 == 0):
+        lis.append(i)
+sum_cnt = 0
+for j in lis:
+    sum_cnt += j
+print sum_cnt
+
+------------------------------------
+
+315
+
+Process finished with exit code 0
+------------------------------------
+
+8: Display the phone number as below and also print the last 4 digit in ascending order
+
+input : 9993452133
+
+output :xxx-xxx-xxxx
+
+==>
+inp = str(9993452133)
+str1 = ""
+f3 = inp[0:3]
+s3 = inp[3:6]
+l4 = sorted(inp[6:10])
+for i in l4:
+    str1 += i
+print f3,'-',s3,'-',str1
+-
+---------------------------------------
+999 - 345 - 1233
+
+Process finished with exit code 0
+---------------------------------------
+
+9: "There are 26 alphabets in English out of which 5 are vowels and 21 are consonants"
+
+Count the sum of numbers in the above statement using regular expression
+
+==>
+import re
+in_str = "There are 26 alphabets in English out of which 5 are vowels and 21 are consonants"
+cnt = 0
+fin = re.findall(r'[0-9]+',in_str)
+for i in fin:
+   cnt += int(i)
+print cnt
+
+-----------------------------------------
+52
+
+Process finished with exit code 0
+
+------------------------------------------
+ 
+
+10.anagram : sample inputs : tear, rate ; Find if these words are anagram or not. Program should accept two inputs from user.
+
+==>
+str1 = str(input())
+str2 = str(input())
+
+if sorted(str1) == sorted(str2):
+    print("Both the strings are anagrams")
+else:
+    print("Strings are not anagrams")
+
+---------------------------------------
+listen
+silent
+Both the strings are anagrams
+
+Process finished with exit code 0
+---------------------------------------
+
+11;With a given integral number n, change the program to generate a dictionary that contains (i, cube of i) such that is an integral number between 1 and n (both included).
+and then the program should print the dictionary.
+Suppose the following input is supplied to the program:
+7
+Then, the output should be:
+{1: 1, 2: 8, 3: 27, 4: 64, 5: 125, 6: 216, 7: 343}
+Take the input from the user via console.
+
+==>
+inp = int(input())
+my_dict={}
+for i in range(1,inp+1):
+    my_dict[i] = i ** 3
+print my_dict
+
+--------------------------------------------------
+7
+{1: 1, 2: 8, 3: 27, 4: 64, 5: 125, 6: 216, 7: 343}
+
+Process finished with exit code 0
+---------------------------------------------------
+
+12: find if the below numbers are Armstrong number
+a: 153
+
+==>
+num = int(input("input: "))
+sum_cnt = 0
+
+temp = num
+while temp > 0:
+   digit = temp % 10
+   sum_cnt += digit ** 3
+   temp /= 10
+
+if num == sum_cnt:
+   print num,'is an Armstrong number'
+else:
+   print num,'is not an Armstrong number'
+
+---------------------------------------
+input: 153
+153 is an Armstrong number
+
+Process finished with exit code 0
+---------------------------------------
+
+b:1634
+---------------------------------------
+input: 1634
+1634 is not an Armstrong number
+
+Process finished with exit code 0
+----------------------------------------
+
+c: 876
+----------------------------------------
+input: 876
+876 is not an Armstrong number
+
+Process finished with exit code 0
+----------------------------------------
+ 
+
+	
