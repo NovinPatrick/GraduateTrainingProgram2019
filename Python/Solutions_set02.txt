@@ -32,12 +32,13 @@ sub_dict[k] =v
 d = {}
 sub_dict = {}
 no_of_stud = 2
-marks = []
+
 for i in range(0,no_of_stud):
     roll_id = raw_input("Roll id: ")
     name = raw_input("Name: ")
     clas = raw_input("Class: ")
     print "Enter Marks"
+    marks = []
     for j in range(0,5):
         k = raw_input()
         marks.append(k)
